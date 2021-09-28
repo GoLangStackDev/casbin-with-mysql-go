@@ -1,0 +1,10 @@
+p, member, /posts, GET
+p, member, /posts/:id, GET
+
+p, admin, /posts, POST
+p, admin, /posts/:id, PUT
+p, admin, /posts/:id, DELETE
+
+g, admin, member
+g, super, admin
+g, lili, member
