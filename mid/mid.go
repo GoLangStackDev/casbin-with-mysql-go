@@ -1,7 +1,9 @@
 package mid
 
 import (
+	"casbin-with-mysql-go/lib"
 	"github.com/casbin/casbin/v2"
+	gormadapter "github.com/casbin/gorm-adapter/v3"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -22,7 +24,10 @@ func CheekLogin() gin.HandlerFunc {
 }
 
 func RBAC() gin.HandlerFunc {
-	e,_ := casbin.NewEnforcer("resources/model.conf","resources/policy.csv")
+	adapter, _ := gormadapter.NewAdapterByDB(lib.Gorm)
+	e,_ := casbin.NewEnforcer("resources/model.conf", adapter)
+	// 必须执行
+	e.LoadPolicy()
 
 	return func(c *gin.Context) {
 		user,_ := c.Get("user_name")
