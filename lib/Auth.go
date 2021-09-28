@@ -32,4 +32,10 @@ func initPolicy()  {
 	for _, user := range users {
 		E.AddRoleForUser(user.UserName,user.RoleName)
 	}
+
+	// 加载理由和权限
+	routers := GetRouterRoles()
+	for _,router := range routers {
+		E.AddPolicy(router.RoleName,router.RUri,router.RMethod)
+	}
 }

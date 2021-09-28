@@ -35,3 +35,13 @@ func GetUserRoles() (users []*models.Users)  {
 		Find(&users)
 	return
 }
+
+// 获取路由和角色
+func GetRouterRoles() (routers []*models.Routers) {
+	Gorm.Table("routers as a,router_roles b,roles c").
+		Select("a.r_uri,a.r_method,c.role_name").
+		Where("a.r_id=b.r_id and b.role_id=c.role_id").
+		Order("a.r_id desc").
+		Find(&routers)
+	return
+}
