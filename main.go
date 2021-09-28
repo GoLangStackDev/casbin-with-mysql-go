@@ -1,23 +1,31 @@
 package main
 
 import (
-	"fmt"
-	"github.com/casbin/casbin/v2"
+	"casbin-with-mysql-go/mid"
+	"github.com/gin-gonic/gin"
+	"log"
+	"net/http"
 )
 
 func main() {
-	sub := "lili"
-	obj := "/posts"
-	act := "GET"
+	r := gin.New()
+	// 加入中间件
+	r.Use(mid.CheekLogin(),mid.RBAC())
 
-	e,err := casbin.NewEnforcer("resources/model.conf","resources/policy.csv")
-	checkError(err)
-	ok,err := e.Enforce(sub,obj,act)
-	checkError(err)
-	if ok {
-		fmt.Println("通过！")
-	}else{
-		fmt.Println("不通过！")
+	r.GET("/posts", func(c *gin.Context) {
+
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "所有文章",
+		})
+	})
+	r.POST("/posts", func(c *gin.Context) {
+
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "批量修改文章",
+		})
+	})
+	if err:=r.Run(":8082");err!=nil {
+		log.Panicln(err)
 	}
 }
 // 统一错误检查
