@@ -7,7 +7,7 @@ import (
 )
 
 var Gorm *gorm.DB
-func init()  {
+func InitDB()  {
 	Gorm = InitGorm()
 }
 func InitGorm() *gorm.DB {
