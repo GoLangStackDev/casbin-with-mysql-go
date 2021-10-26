@@ -35,4 +35,4 @@ go get -u github.com/gin-gonic/gin
 
 ## 系列文章链接
 
-- [快速入门](https://mp.weixin.qq.com/s/wGEPuXgHS013mAyjD-ityA)
+- [快速入门](http://mp.weixin.qq.com/s?__biz=MzAxMDM4OTE4Ng==&mid=2247484735&idx=1&sn=285422f74c6675a3f97bb9b5d5a9719e&chksm=9b505692ac27df84b57b41a4459c5bac23af639928b1c5a5719519c146ac5618a293fe0f9f19#rd)
